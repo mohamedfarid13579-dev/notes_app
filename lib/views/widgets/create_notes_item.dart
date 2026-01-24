@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,7 +7,7 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 24, bottom: 24, left: 16),
+      padding: EdgeInsets.only(top: 34, bottom: 34, left: 16),
       decoration: BoxDecoration(
         color: Color(0XFFFFCC80),
         borderRadius: BorderRadius.circular(16),
