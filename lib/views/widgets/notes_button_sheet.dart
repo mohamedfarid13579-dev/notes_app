@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/views/widgets/custome_sheat_button.dart';
 import 'package:notes_app/views/widgets/custome_text_field.dart';
 
 class AddNotesButtonSheet extends StatelessWidget {
@@ -25,21 +26,30 @@ class AddNotesButtonSheet extends StatelessWidget {
             topRight: Radius.circular(16),
           ),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: const [
-            SizedBox(height: 32),
-            CustomeTextField(
-              hint: 'Title',
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            CustomeTextField(
-              hint: 'Content',
-              maxLines: 5,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              SizedBox(height: 32),
+              CustomeTextField(
+                hint: 'Title',
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              CustomeTextField(
+                hint: 'Content',
+                maxLines: 5,
+              ),
+              SizedBox(
+                height: 70,
+              ),
+              CustomeSheatbutton(),
+              SizedBox(
+                height: 16,
+              ),
+            ],
+          ),
         ),
       ),
     );
