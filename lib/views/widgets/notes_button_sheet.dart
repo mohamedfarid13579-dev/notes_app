@@ -8,7 +8,6 @@ class AddNotesButtonSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      // ده مهم عشان لما الكيبورد يطلع
       padding: EdgeInsets.only(
         left: 16,
         right: 16,
@@ -27,30 +26,68 @@ class AddNotesButtonSheet extends StatelessWidget {
           ),
         ),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              SizedBox(height: 32),
-              CustomeTextField(
-                hint: 'Title',
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              CustomeTextField(
-                hint: 'Content',
-                maxLines: 5,
-              ),
-              SizedBox(
-                height: 70,
-              ),
-              CustomeSheatbutton(),
-              SizedBox(
-                height: 16,
-              ),
-            ],
-          ),
+          child: AddNoteForm(),
         ),
+      ),
+    );
+  }
+}
+
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({
+    super.key,
+  });
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? tittle, subtitle;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(height: 32),
+          CustomeTextField(
+            onSaved: (value) {
+              tittle = value;
+            },
+            hint: 'Title',
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          CustomeTextField(
+            onSaved: (value) {
+              subtitle = value;
+            },
+            hint: 'Content',
+            maxLines: 5,
+          ),
+          SizedBox(
+            height: 70,
+          ),
+          CustomeSheatbutton(
+            onTap: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+                setState(() {});
+              }
+            },
+          ),
+          SizedBox(
+            height: 16,
+          ),
+        ],
       ),
     );
   }
